@@ -4,7 +4,9 @@
   "description": "AYWUE Catalog API",
   "main": "app",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "node server.js"   
   },
   "author": "Mayra Gomes",
   "license": "ISC",
