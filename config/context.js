@@ -2,9 +2,9 @@ const sql = require("mysql2/promise");
 
 // Configuração do banco de dados
 const dbConfig = {
-  host: 'localhost', 
+  host: '82.25.93.13', 
   user: 'root',
-  password: '',
+  password: 'aywWjo323=*',
   database: 'AYWUEDEV',
 };
 
