@@ -3,7 +3,7 @@ const nodemailer = require('nodemailer');
 const sgMail = require('@sendgrid/mail')
 
 
-const sendGridApiKey ='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';
+const sendGridApiKey = process.env.SENDGRID ||  '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';
 sgMail.setApiKey(sendGridApiKey);
 
 class CollectionFormModel {
