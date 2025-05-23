@@ -1,10 +1,17 @@
 const { poolPromise } = require("../config/context");
-const nodemailer = require('nodemailer');
-const sgMail = require('@sendgrid/mail')
+const fs = require('fs');
+const handlebars = require('handlebars');
+const sgMail = require('@sendgrid/mail');
 
 
 const sendGridApiKey = process.env.SENDGRID ||  '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';
 sgMail.setApiKey(sendGridApiKey);
+
+function renderTemplate(filePath, variables) {
+  const source = fs.readFileSync(filePath, 'utf8');
+  const template = handlebars.compile(source);
+  return template(variables);
+}
 
 class CollectionFormModel {
 
@@ -18,13 +25,12 @@ class CollectionFormModel {
   }
 
   static async sendEmail(req){
-      console.log('entrou no email '+JSON.stringify(req))
       const msg = {
-        to: req.email, // Change to your recipient
+        to: req.email, 
         from:{
             email: 'no-reply@aywue.com',
             name: 'AYWUE AESTHICS'
-        }, // Change to your verified sender
+        },
         subject: 'Já sabes que essa coleção vai pipocar, né?',
         text: 'AYWUE THE BEST',
         html: '<strong>AYWUE MELHOR MARCA DE ANGOLA</strong>',
@@ -43,7 +49,7 @@ class CollectionFormModel {
     static async create(req, res) {
         try{
             console.log('entrou no create')
-            const currentCollection = 1; // will be returned from bd - tb settings
+            const currentCollection = 1; 
             const body = req.body;
 
             const { name, email, address, gender, phone } = body;
